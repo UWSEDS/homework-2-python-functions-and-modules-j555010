@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[123]:
+# In[5]:
 
 
 # Problem 1
 import pandas as pd
 import io
 import requests
+import numpy as np
 
 url = "https://data.seattle.gov/api/views/65db-xm6k/rows.csv?accessType=DOWNLOAD"
 s = requests.get(url).content
@@ -17,6 +18,11 @@ df = df.head(10)
 df_east=df['Fremont Bridge East Sidewalk']
 df_west=df['Fremont Bridge West Sidewalk']
 df1 = pd.DataFrame({'Fremont Bridge East Sidewalk':df_east,'Fremont Bridge West Sidewalk':df_west})
+df1
+
+
+# In[19]:
+
 
 #Problem 2 
 from pandas import Series, DataFrame
@@ -27,16 +33,10 @@ if df1.columns.all() == test.columns.all():
     print('true')
 
 #The values in each column have the same python type
-if df1.dtypes.all() == test.dtypes.all():
+if df1.columns.dtype == test.columns.dtype:
     print('true')
 
 #There are at least 10 rows in the DataFrame.
 if len(test.index) >= 10:
     print('true')
-
-
-# In[ ]:
-
-
-
 
